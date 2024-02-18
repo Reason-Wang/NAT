@@ -1,0 +1,8 @@
+*.json
+*.jsonl
+.idea
+*__pycache__*
+*.pyc
+*.pkl
+*.csv
+*.slurm
