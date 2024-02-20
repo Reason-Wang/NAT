@@ -24,13 +24,7 @@
 
 ### Main Results
 
-<img src="./src/math_num.png" alt="math_num" style="zoom: 22%;" /><img src="./src/qa_num.png" alt="qa_num" style="zoom:25%;" />
+<img src="./src/math_num.png" width="350"><img src="./src/qa_num.png" width="410">
 
 **Figure 1** and **Figure 2** show the result on math and question-answering tasks. For math, our method continues to enhance the performance when incorporating more negative samples. For both math and QA, our method achieves better results.
-
-
-
-
-
-
 

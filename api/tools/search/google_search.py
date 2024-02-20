@@ -11,10 +11,11 @@ HIT = 0
 CALL_SERPER = 0
 
 with open("data/keys.json", "r") as f:
-    keys = json.load(f)
-    GOOGLE_API_KEY = keys["google_api_key"]
-    CUSTOM_SEARCH_ENGINE_ID = keys["custom_search_engine_id"]
-    SERPER_API_KEY = keys["serper_api_key"]
+    pass
+    # keys = json.load(f)
+    # GOOGLE_API_KEY = keys["google_api_key"]
+    # CUSTOM_SEARCH_ENGINE_ID = keys["custom_search_engine_id"]
+    # SERPER_API_KEY = keys["serper_api_key"]
 
 
 @timeout_decorator.timeout(5, timeout_exception=TimeoutError)
@@ -140,3 +141,36 @@ def google_search_serper_with_answer(query, n=10):
             fcntl.flock(f, fcntl.LOCK_UN)
 
         return context
+
+
+def google_retrieve(query, max_retries=3):
+
+    results = google_search(query, n=5)
+    all_error = True
+    all_cleaned_title_paragraphs = []
+    for result in results:
+        text = scrape_text(result["url"])
+        if text.startswith('Error:'):
+            continue
+        else:
+            all_error = False
+        filtered_text = filter_text(text)
+        paragraphs = split_into_paragraphs(filtered_text)
+        all_cleaned_title_paragraphs.extend([(result['title'], p) for p in paragraphs])
+
+    all_cleaned_paragraphs = [p[1] for p in all_cleaned_title_paragraphs]
+    _, idxs = retrieve(query, all_cleaned_paragraphs, 10)
+    relevant_title_paragraphs = [all_cleaned_title_paragraphs[i] for i in idxs]
+    if all_error:
+        return None
+    else:
+        return relevant_title_paragraphs
+
+
+def google_retrieve_rank(query):
+    title_paragraphs = google_retrieve(query)
+    titles = [p[0] for p in title_paragraphs]
+    paragraphs = [p[1] for p in title_paragraphs]
+    relevant_titles, relevant_paragraphs, _ = rerank(query, titles, paragraphs, 5)
+
+    return relevant_titles, relevant_paragraphs

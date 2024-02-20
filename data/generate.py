@@ -10,61 +10,10 @@ from api.tools import evaluate
 import copy
 from model.causallm import ChatCausalLM
 
+from data.utils import extract_thought_action, extract_action_args, get_observation
+
 logging.getLogger().setLevel(logging.ERROR)
 from datetime import datetime
-
-def extract_thought_action(thought_action, reflection):
-    error = False
-    thought = "Thought: None"
-    action = "Action: None"
-    try:
-        if "\nAction: " in thought_action.strip():
-            thought, action = thought_action.strip().split("\nAction: ")[:2]
-        elif "Action: " in thought_action.strip():
-            thought = ""
-            action = thought_action[len("Action: "):]
-        else:
-            thought = thought_action.split("\n")[0]
-            action = None
-            # will skip bad ids
-            error = True
-        if len(reflection) > 0:
-            thought = reflection.strip() + " " + thought
-    except Exception as e:
-        print("Error while trying to extract thought action pair: ", e)
-        error = True
-
-    return thought, action, error
-#
-#
-def extract_action_args(action):
-    action_type = None
-    action_args = None
-    error = False
-    try:
-        action_type, action_args = action.split('[')[:2]
-        action_args = action_args[:-1]
-    except Exception as e:
-        print("Error while trying to extract action and arguments.")
-        error = True
-    return action_type, action_args, error
-
-
-def get_observation(action_type, action_args):
-    obs = "Observation: None"
-    error = False
-    if "finish" not in action_type.lower():
-        try:
-            obs = call_tools(action_type, action_args)
-        # We expect this not happen
-        except Exception as exc:
-            print('%r generated an exception: %s' % ((action_type, action_args), exc))
-            error = True
-    else:
-        assert obs == "Observation: None", f"action {action_type} has observation {obs}"
-        obs = f"Episode finished"
-
-    return obs, error
 
 task2file = {
     "test":{
