@@ -6,3 +6,4 @@
 *.pkl
 *.csv
 *.slurm
+*.ipynb
