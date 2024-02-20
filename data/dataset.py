@@ -1,14 +1,8 @@
 import warnings
-
 import torch
 from torch.nn.utils.rnn import pad_sequence
 from torch.utils.data import Dataset
-from transformers import LlamaTokenizer
-
-# import sys
-# sys.path.append("..")
 from prompts.conversations import get_conv_template
-from prompts.utils import tokenize_conversation
 
 
 def preprocess(organized_data, tokenizer, conv_template_name, max_length=4096):

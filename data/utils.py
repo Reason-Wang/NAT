@@ -299,3 +299,83 @@ def format_sample_with_prompt(task_name, traj, question, prompts, template):
     return formatted_traj
 
 
+def format_question_with_prompt(task_name, question, prompts, template):
+    prompt = prompts[template]
+    if template == 'zero-shot' or template == 'cot-zero-shot':
+        prompt_messages = prompt['conversations']
+        question_prompt = prompt['question_prompt']
+        prompt_messages_with_question = prompt_messages + [
+            {
+                'role': 'user',
+                'content': question_prompt.format(question=question),
+            }
+        ]
+    elif template in {
+        'zero-shot-target-aware',
+        'zero-shot-target-aware-2',
+        'zero-shot-target-aware-meaningless',
+        'cot-zero-shot-target-aware',
+        'zero-shot-target-aware-prefix-correct',
+        'zero-shot-target-aware-prefix-good',
+        'zero-shot-target-aware-prefix-laptop',
+        'zero-shot-target-aware-prefix-AB',
+        'zero-shot-target-aware-prefix-correct-inverse',
+        'zero-shot-target-aware-good',
+        'zero-shot-target-aware-random-sentence',
+        'zero-shot-target-aware-inverse',
+    }:
+        prompt_messages = prompt['conversations']
+        # This is for inference where we let model to generate correctly
+        question_prompt = prompt['correct_question_prompt']
+        prompt_messages_with_question = prompt_messages + [
+            {
+                'role': 'user',
+                'content': question_prompt.format(question=question),
+            }
+        ]
+    elif template in ['one-shot','one-shot2']:
+        prompt_messages = prompt['conversations']
+        question_prompt = prompt['question_prompt']
+        prompt_messages_with_question = prompt_messages + [
+            {
+                'role': 'user',
+                'content': question_prompt.format(question=question),
+            }
+        ]
+    elif template in {'zero-shot-target-aware-soft'}:
+        assert task_name == 'hotpotqa'
+        prompt_messages = prompt['conversations']
+        question_prompt = prompt['correct_question_prompt']
+        prompt_messages_with_question = prompt_messages + [
+            {
+                'role': 'user',
+                'content': question_prompt.format(question=question),
+                'loss': False
+            }
+        ]
+    elif template in {'zero-shot-target-aware-three-class'}:
+        assert task_name == 'hotpotqa'
+        prompt_messages = prompt['conversations']
+        question_prompt = prompt['class_3_question_prompt']
+        prompt_messages_with_question = prompt_messages + [
+            {
+                'role': 'user',
+                'content': question_prompt.format(question=question),
+            }
+        ]
+    elif template in {'zero-shot-target-aware-four-class'}:
+        assert task_name == 'hotpotqa'
+        prompt_messages = prompt['conversations']
+        question_prompt = prompt['class_4_question_prompt']
+        prompt_messages_with_question = prompt_messages + [
+            {
+                'role': 'user',
+                'content': question_prompt.format(question=question),
+            }
+        ]
+    else:
+        raise NotImplementedError(f"Prompt {template} is not supported")
+
+    return prompt_messages_with_question
+
+

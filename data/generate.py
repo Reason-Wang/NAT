@@ -10,7 +10,7 @@ from api.tools import evaluate
 import copy
 from model.causallm import ChatCausalLM
 
-from data.utils import extract_thought_action, extract_action_args, get_observation
+from data.utils import extract_thought_action, extract_action_args, get_observation, format_question_with_prompt
 
 logging.getLogger().setLevel(logging.ERROR)
 from datetime import datetime
@@ -143,7 +143,7 @@ def run(
     questions = [e['question'] for e in data_lsit]
     ground_truths = [e['answer'] for e in data_lsit]
     ids = [e['id'] for e in data_lsit]
-    question_messages = [format_prompt_messages_with_prompt(task_name, question, prompts, template=template) for question in questions]
+    question_messages = [format_question_with_prompt(task_name, question, prompts, template=template) for question in questions]
 
     print(f"Input messages: {question_messages[0]}")
 
@@ -205,8 +205,12 @@ if __name__ == '__main__':
 
     model_name = args.model
     base_model_name = model_name.split('/')[-1]
-    outfilename = f"data/trajs/{args.task_name}/{args.task_split}_{args.task_start_index}_{args.task_end_index}_{base_model_name}_{args.temperature}_{args.suffix}"
-    resultfilename = f"data/results/{args.task_name}/{args.task_split}_{args.task_start_index}_{args.task_end_index}_{base_model_name}_{args.temperature}_{args.suffix}"
+    outfilename = f"data/trajs/{args.task_name}/{args.task_split}_{args.task_start_index}_{args.task_end_index}_{base_model_name}_{args.temperature}"+args.suffix
+    resultfilename = f"data/results/{args.task_name}/{args.task_split}_{args.task_start_index}_{args.task_end_index}_{base_model_name}_{args.temperature}"+args.suffix
+    dir_name = os.path.dirname(outfilename)
+    if not os.path.exists(dir_name):
+        os.makedirs(dir_name)
+
     print(outfilename)
 
     data_path = f"data/dataset/{args.task_name}/{task2file[args.task_split][args.task_name]}"
