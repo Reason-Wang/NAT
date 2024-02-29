@@ -300,16 +300,21 @@ def main(
     if task == "math":
         with open("prompts/gsm8k/gsm8k_conversation.json", "r") as f:
             prompt = json.load(f)['zero-shot-target-aware']
+            question_prompt = prompt['correct_question_prompt']
+    elif task in {"hotpotqa", "qa"}:
+        with open("prompts/hotpotqa/hotpotqa_conversation.json", "r") as f:
+            prompt = json.load(f)['zero-shot-target-aware-four-class']
+            question_prompt = prompt['class_4_question_prompt']
     else:
-        raise NotImplementedError
+        raise NotImplementedError(f"Task {task} not implemented")
 
     from prompts.conversations import get_conv_template
     conv = get_conv_template("llama-2")
     for turn in prompt['conversations']:
         conv.append_message(conv.roles[0] if turn['role'] == 'user' else conv.roles[1], turn['content'])
     question = input("Input question: ")
-    question_prompt = prompt['correct_question_prompt'].format(question=question)
-    conv.append_message(conv.roles[0], question_prompt)
+    question = question_prompt.format(question=question)
+    conv.append_message(conv.roles[0], question)
     conv.append_message(conv.roles[1], None)
 
     max_turn = 8
@@ -341,6 +346,7 @@ def main(
         print("\n"+colored("Environment: ", "green")+obs+"\n", end="", flush=True)
         conv.append_message(conv.roles[0], obs)
         conv.append_message(conv.roles[1], None)
+    print("\n")
 
 
 if __name__=="__main__":

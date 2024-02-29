@@ -1,0 +1,210 @@
+{
+  "one-shot": [
+    {
+      "role": "user",
+      "content": "Solve a math problem with interleaving Thought, Action, Observation steps. Thought can reason about the current situation, and Action can be two types:\n(1) calculate[expression], which calculates the expression and returns the answer.\n(2) finish[answer], which returns the answer and finishes the task."
+    },
+    {
+      "role": "assistant",
+      "content": "I've understood your instruction, start please."
+    },
+    {
+      "role": "user",
+      "content": "Question: Colin can skip at six times the speed that Brandon can.  Brandon can skip at one-third the speed that Tony can. And Tony can skip at twice the speed that Bruce can. At what speed, in miles per hour, can Colin skip if Bruce skips at 1 mile per hour?"
+    },
+    {
+      "role": "assistant",
+      "content": "Thought: To find Colin's skipping speed, I need to first determine the skipping speeds of Bruce, Tony, and Brandon in sequence. Starting with Bruce's speed, which is given as 1 mile per hour, I can calculate Tony's speed as twice that of Bruce's.\nAction: calculate[2 * 1]"
+    },
+    {
+      "role": "user",
+      "content": "Observation: 2"
+    },
+    {
+      "role": "assistant",
+      "content": "Thought: Next, I can calculate Brandon's speed as one-third that of Tony's.\nAction: calculate[1/3 * 2]"
+    },
+    {
+      "role": "user",
+      "content": "Observation: 2/3"
+    },
+    {
+      "role": "assistant",
+      "content": "Thought: Finally, I can calculate Colin's speed as six times that of Brandon's.\nAction: calculate[6 * 2/3]"
+    },
+    {
+      "role": "user",
+      "content": "Observation: 4"
+    },
+    {
+      "role": "assistant",
+      "content": "Thought: Now that I have the skipping speed of Colin, I can finish the task.\nAction: finish[4]"
+    }
+  ],
+  "zero-shot": {
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Solve a math problem with interleaving Thought, Action, Observation steps. Thought can reason about the current situation, and Action can be two types:\n(1) calculate[expression], which calculates the expression and returns the answer.\n(2) finish[answer], which returns the answer and finishes the task."
+      },
+      {
+        "role": "assistant",
+        "content": "I've understood your instruction, start please."
+      }
+    ],
+    "question_prompt": "Question: {question}"
+  },
+  "zero-shot-target-aware": {
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Solve a math problem with interleaving Thought, Action, Observation steps. Thought can reason about the current situation, and Action can be two types:\n(1) calculate[expression], which calculates the expression and returns the answer.\n(2) finish[answer], which returns the answer and finishes the task."
+      },
+      {
+        "role": "assistant",
+        "content": "I've understood your instruction, start please."
+      }
+    ],
+    "correct_question_prompt": "Question: {question}. Generate a sequence of Thought and Action steps to solve the problem correctly.",
+    "incorrect_question_prompt": "Question: {question}. Generate a sequence of Thought and Action steps. But incorrectly solve the problem."
+  },
+  "zero-shot-target-aware-prefix-correct": {
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Solve a math problem with interleaving Thought, Action, Observation steps. Thought can reason about the current situation, and Action can be two types:\n(1) calculate[expression], which calculates the expression and returns the answer.\n(2) finish[answer], which returns the answer and finishes the task."
+      },
+      {
+        "role": "assistant",
+        "content": "I've understood your instruction, start please."
+      }
+    ],
+    "correct_question_prompt": "[Correct] Question: {question}.",
+    "incorrect_question_prompt": "[Incorrect] Question: {question}."
+  },
+  "zero-shot-target-aware-prefix-good": {
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Solve a math problem with interleaving Thought, Action, Observation steps. Thought can reason about the current situation, and Action can be two types:\n(1) calculate[expression], which calculates the expression and returns the answer.\n(2) finish[answer], which returns the answer and finishes the task."
+      },
+      {
+        "role": "assistant",
+        "content": "I've understood your instruction, start please."
+      }
+    ],
+    "correct_question_prompt": "[Good] Question: {question}.",
+    "incorrect_question_prompt": "[Bad] Question: {question}."
+  },
+  "zero-shot-target-aware-prefix-laptop": {
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Solve a math problem with interleaving Thought, Action, Observation steps. Thought can reason about the current situation, and Action can be two types:\n(1) calculate[expression], which calculates the expression and returns the answer.\n(2) finish[answer], which returns the answer and finishes the task."
+      },
+      {
+        "role": "assistant",
+        "content": "I've understood your instruction, start please."
+      }
+    ],
+    "correct_question_prompt": "[Laptop] Question: {question}.",
+    "incorrect_question_prompt": "[Screen] Question: {question}."
+  },
+  "zero-shot-target-aware-prefix-AB": {
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Solve a math problem with interleaving Thought, Action, Observation steps. Thought can reason about the current situation, and Action can be two types:\n(1) calculate[expression], which calculates the expression and returns the answer.\n(2) finish[answer], which returns the answer and finishes the task."
+      },
+      {
+        "role": "assistant",
+        "content": "I've understood your instruction, start please."
+      }
+    ],
+    "correct_question_prompt": "[A] Question: {question}.",
+    "incorrect_question_prompt": "[B] Question: {question}."
+  },
+  "zero-shot-target-aware-prefix-correct-inverse": {
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Solve a math problem with interleaving Thought, Action, Observation steps. Thought can reason about the current situation, and Action can be two types:\n(1) calculate[expression], which calculates the expression and returns the answer.\n(2) finish[answer], which returns the answer and finishes the task."
+      },
+      {
+        "role": "assistant",
+        "content": "I've understood your instruction, start please."
+      }
+    ],
+    "correct_question_prompt": "[Incorrect] Question: {question}.",
+    "incorrect_question_prompt": "[Correct] Question: {question}."
+  },
+  "zero-shot-target-aware-good": {
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Solve a math problem with interleaving Thought, Action, Observation steps. Thought can reason about the current situation, and Action can be two types:\n(1) calculate[expression], which calculates the expression and returns the answer.\n(2) finish[answer], which returns the answer and finishes the task."
+      },
+      {
+        "role": "assistant",
+        "content": "I've understood your instruction, start please."
+      }
+    ],
+    "correct_question_prompt": "Question: {question}. [Good]",
+    "incorrect_question_prompt": "Question: {question}. [Bad]"
+  },
+  "zero-shot-target-aware-random-sentence": {
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Solve a math problem with interleaving Thought, Action, Observation steps. Thought can reason about the current situation, and Action can be two types:\n(1) calculate[expression], which calculates the expression and returns the answer.\n(2) finish[answer], which returns the answer and finishes the task."
+      },
+      {
+        "role": "assistant",
+        "content": "I've understood your instruction, start please."
+      }
+    ],
+    "correct_question_prompt": "Question: {question}. 15th-century Italy saw the formation of the two main variants that are known today.",
+    "incorrect_question_prompt": "Question: {question}. An apple is a round, edible fruit produced by an apple tree."
+  },
+  "zero-shot-target-aware-meaningless": {
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Solve a math problem with interleaving Thought, Action, Observation steps. Thought can reason about the current situation, and Action can be two types:\n(1) calculate[expression], which calculates the expression and returns the answer.\n(2) finish[answer], which returns the answer and finishes the task."
+      },
+      {
+        "role": "assistant",
+        "content": "I've understood your instruction, start please."
+      }
+    ],
+    "correct_question_prompt": "[1] Question: {question}.",
+    "incorrect_question_prompt": "[2] Question: {question}."
+  },
+  "zero-shot-target-aware-2": {
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Solve a math problem with interleaving Thought, Action, Observation steps. Thought can reason about the current situation, and Action can be two types:\n(1) calculate[expression], which calculates the expression and returns the answer.\n(2) finish[answer], which returns the answer and finishes the task."
+      },
+      {
+        "role": "assistant",
+        "content": "I've understood your instruction, start please."
+      }
+    ],
+    "correct_question_prompt": "Question: {question}. Generate a sequence of Thought and Action steps to solve the problem **correctly**.",
+    "incorrect_question_prompt": "Question: {question}. Generate a sequence of Thought and Action steps. But **incorrectly** solve the problem."
+  },
+  "cot-zero-shot": {
+    "conversations": [
+
+    ],
+    "question_prompt": "Answer the question: {question}"
+  },
+  "cot-zero-shot-target-aware": {
+    "conversations": [
+
+    ],
+    "correct_question_prompt": "Question: {question}. Please solve the problem correctly.",
+    "incorrect_question_prompt": "Question: {question}. Generate steps that incorrectly solve the problem."
+  }
+}

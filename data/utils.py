@@ -165,10 +165,10 @@ def load_data_with_prompts(
         prompts = json.load(f)
 
     if question_path.endswith('.json'):
-        with open(question_path, 'r') as f:
+        with open(question_path, 'r', encoding='utf-8') as f:
             questions_data = json.load(f)
     elif question_path.endswith('.jsonl'):
-        with open(question_path, 'r') as f:
+        with open(question_path, 'r', encoding='utf-8') as f:
             questions_data = [json.loads(line) for line in f]
 
     questions_dict = {}

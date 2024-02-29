@@ -23,7 +23,7 @@ def call_tools(tool_name, tool_input):
     if tool_name == "search":
         result = GOOGLESearchTitlesSnippets(tool_input)
         # result = google_search_serper_with_answer(tool_input)
-        print("Context: ", result)
+        # print("Context: ", result)
     elif tool_name == "calculate":
         result = calculate(tool_input)
     else:

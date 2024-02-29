@@ -1,0 +1,280 @@
+{
+  "one-shot2": {
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Solve a question answering task with interleaving Thought, Action, Observation steps. Thought can reason about the current situation, and Action can be two types: \n(1) search[query], which searches a query on google. After you provide thought and action, I will search google, and the Observation is either google's answer to the query or some snippets from google search results. Note that sometimes google does not provide snippet that contains the answer, hence alternative search might be needed.\n(2) finish[answer], which returns the answer and finishes the task.\nQuestion: When was the person who stated that biblical Midian was in the \"northwest Arabian Peninsula\" born?"
+      },
+      {
+        "role": "assistant",
+        "content": "Thought: To answer this question, I first need to identify the person who stated that biblical Midian was in the \"northwest Arabian Peninsula.\" Once identified, I can search for their birth date.\n\nAction: search[Who stated biblical Midian was in the northwest Arabian Peninsula]"
+      },
+      {
+        "role": "user",
+        "content": "Observation: [Google Snippet]: William G. Dever states that biblical Midian was in the \"northwest Arabian Peninsula, on the east shore of the Gulf of Aqaba on the Red Sea\", an area which contained at least 14 inhabited sites during the Late Bronze and early Iron Ages. The area of Midianites corresponds with Hejaz."
+      },
+      {
+        "role": "assistant",
+        "content": "Thought: The person who stated that biblical Midian was in the \"northwest Arabian Peninsula\" is William G. Dever. Now, I need to search for William G. Dever's birth date.\n\nAction: search[William G. Dever birth date]"
+      },
+      {
+        "role": "user",
+        "content": "Observation: [Google Answer]: November 27, 1933"
+      },
+      {
+        "role": "assistant",
+        "content": "Action: finish[November 27, 1933]"
+      }
+  ],
+    "question_prompt": "Now, I will start a new question: {question}"
+  },
+  "one-shot": {
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Solve a question answering task with interleaving Thought, Action, Observation steps. Thought can reason about the current situation, and Action can be two types: \n(1) search[query], which searches a query on google and returns a short snippet containing the answer. Note that sometimes the snippet does not contain the answer, and some alternative search might be needed.\n(2) finish[answer], which returns the answer and finishes the task.\nQuestion: Were Scott Derrickson and Ed Wood of the same nationality?"
+      },
+      {
+        "role": "assistant",
+        "content": "Thought: To find out the nationalities of Scott Derrickson and Ed Wood, I can start by searching for Scott Derrickson's nationality and then do the same for Ed Wood.\n\nAction: search[Scott Derrickson nationality]"
+      },
+      {
+        "role": "user",
+        "content": "Observation:  #1: Scott Derrickson (born July 16, 1966) is an American film director, producer, and screenwriter. He lives in Los Angeles, California. #2: Scott Derrickson is an American director, screenwriter, and producer who has a net worth of $8 million. Scott Derrickson was born in Denver,\u00a0... #3: Scott Derrickson (born July 16, 1966 in Denver, Colorado) is an American film director, producer, and screenwriter. He is best known for directing "
+      },
+      {
+        "role": "assistant",
+        "content": "Thought: The observations confirm that Scott Derrickson is an American national. Now, I should look for Ed Wood's nationality to compare.\n\nAction: search[Ed Wood nationality]"
+      },
+      {
+        "role": "user",
+        "content": "Observation:  #1: Edward Davis \"Ed\" Wood, Jr. (October 10, 1924 \u2013 December 10, 1978) was an American director, producer, screenwriter, actor, author, and editor who is known\u00a0... #2: Julian Edward Wood (May 3, 1844 \u2013 June 2, 1911) was an American medical doctor, soldier, and a founder of Pi Kappa Alpha fraternity. #3: Edward Davis Wood Jr. (October 10, 1924 \u2013 December 10, 1978) was an American filmmaker, actor, and pulp novel author."
+      },
+      {
+        "role": "assistant",
+        "content": "Thought: The observations confirm that Ed Wood was also an American national. \n\nAction: finish[Yes]"
+      }
+    ],
+    "question_prompt": "Now, I will start a new question: {question}"
+  },
+  "zero-shot": {
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Solve a question answering task with interleaving Thought, Action, Observation steps. Thought can reason about the current situation, and Action can be two types: \n(1) search[query], which searches a query on google and returns a short snippet containing the answer. Note that sometimes the snippet does not contain the answer, and some alternative search might be needed.\n(2) finish[answer], which returns the answer and finishes the task."
+      },
+      {
+        "role": "assistant",
+        "content": "I've understood your instruction, start please."
+      }
+    ],
+    "question_prompt": "Question: {question}"
+  },
+  "zero-shot-target-aware": {
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Solve a question answering task with interleaving Thought, Action, Observation steps. Thought can reason about the current situation, and Action can be two types: \n(1) search[query], which searches a query on google and returns a short snippet containing the answer. Note that sometimes the snippet does not contain the answer, and some alternative search might be needed.\n(2) finish[answer], which returns the answer and finishes the task. You need to generate a sequence of Thought and Action steps to solve the question. Note that the steps could be correct or incorrect. You need to follow the instruction strictly."
+      },
+      {
+        "role": "assistant",
+        "content": "I've understood your instruction, start please."
+      }
+    ],
+    "correct_question_prompt": "Question: {question}. Generate a sequence of Thought and Action steps to solve the question **correctly**.",
+    "incorrect_question_prompt": "Question: {question}. Generate a sequence of Thought and Action steps. But **incorrectly** solve the question."
+  },
+  "zero-shot-target-aware-three-class": {
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Solve a question answering task with interleaving Thought, Action, Observation steps. Thought can reason about the current situation, and Action can be two types: \n(1) search[query], which searches a query on google and returns a short snippet containing the answer. Note that sometimes the snippet does not contain the answer, and some alternative search might be needed.\n(2) finish[answer], which returns the answer and finishes the task."
+      },
+      {
+        "role": "assistant",
+        "content": "I've understood your instruction, start please."
+      }
+    ],
+    "class_1_question_prompt": "[Incorrect] Question: {question}.",
+    "class_2_question_prompt": "[Partially Correct] Question: {question}.",
+    "class_3_question_prompt": "[Correct] Question: {question}."
+  },
+  "zero-shot-target-aware-four-class": {
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Solve a question answering task with interleaving Thought, Action, Observation steps. Thought can reason about the current situation, and Action can be two types: \n(1) search[query], which searches a query on google and returns a short snippet containing the answer. Note that sometimes the snippet does not contain the answer, and some alternative search might be needed.\n(2) finish[answer], which returns the answer and finishes the task."
+      },
+      {
+        "role": "assistant",
+        "content": "I've understood your instruction, start please."
+      }
+    ],
+    "class_1_question_prompt": "[Totally Incorrect] Question: {question}.",
+    "class_2_question_prompt": "[Mostly Incorrect] Question: {question}.",
+    "class_3_question_prompt": "[Mostly Correct] Question: {question}.",
+    "class_4_question_prompt": "[Correct] Question: {question}."
+  },
+  "zero-shot-target-aware-inverse": {
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Solve a question answering task with interleaving Thought, Action, Observation steps. Thought can reason about the current situation, and Action can be two types: \n(1) search[query], which searches a query on google and returns a short snippet containing the answer. Note that sometimes the snippet does not contain the answer, and some alternative search might be needed.\n(2) finish[answer], which returns the answer and finishes the task. You need to generate a sequence of Thought and Action steps to solve the question. Note that the steps could be correct or incorrect. You need to follow the instruction strictly."
+      },
+      {
+        "role": "assistant",
+        "content": "I've understood your instruction, start please."
+      }
+    ],
+    "correct_question_prompt": "Question: {question}. Generate a sequence of Thought and Action steps. But **incorrectly** solve the question.",
+    "incorrect_question_prompt": "Question: {question}. Generate a sequence of Thought and Action steps to solve the question **correctly**."
+  },
+  "zero-shot-target-aware-soft": {
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Solve a question answering task with interleaving Thought, Action, Observation steps. Thought can reason about the current situation, and Action can be two types: \n(1) search[query], which searches a query on google and returns a short snippet containing the answer. Note that sometimes the snippet does not contain the answer, and some alternative search might be needed.\n(2) finish[answer], which returns the answer and finishes the task. You need to generate a sequence of Thought and Action steps to solve the question. Note that the steps could be correct or incorrect. You need to follow the instruction strictly."
+      },
+      {
+        "role": "assistant",
+        "content": "I've understood your instruction, start please."
+      }
+    ],
+    "correct_question_prompt": "Question: {question}. Generate a sequence of Thought and Action steps to solve the question **correctly**.",
+    "incorrect_question_prompt": "Question: {question}. Generate a sequence of Thought and Action steps. But **incorrectly** solve the question."
+  },
+  "zero-shot-target-aware-2": {
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Solve a question answering task with interleaving Thought, Action, Observation steps. Thought can reason about the current situation, and Action can be two types: \n(1) search[query], which searches a query on google and returns a short snippet containing the answer. Note that sometimes the snippet does not contain the answer, and some alternative search might be needed.\n(2) finish[answer], which returns the answer and finishes the task."
+      },
+      {
+        "role": "assistant",
+        "content": "I've understood your instruction, start please."
+      }
+    ],
+    "correct_question_prompt": "Question: {question}. Generate a sequence of Thought and Action steps to solve the question correctly.",
+    "incorrect_question_prompt": "Question: {question}. Generate a sequence of Thought and Action steps. But incorrectly solve the question."
+  },
+  "two-shot-feedback": [
+    {
+      "role": "user",
+      "content": "Solve a question answering task with interleaving Thought, Action, Observation or Feedback steps. Thought can reason about the current situation, and Action can be two types: \n(1) search[query], which searches a query on google and returns a short snippet containing the answer. Note that sometimes the snippet does not contain the answer, and some alternative search might be needed.\n(2) finish[answer], which returns the answer and finishes the task.\nQuestion: Were Scott Derrickson and Ed Wood of the same nationality?"
+    },
+    {
+      "role": "assistant",
+      "content": "Thought: To find out the nationalities of Scott Derrickson and Ed Wood, I can start by searching for Scott Derrickson's nationality and then do the same for Ed Wood.\n\nAction: search[Scott Derrickson nationality]"
+    },
+    {
+      "role": "user",
+      "content": "Observation:  #1: Scott Derrickson (born July 16, 1966) is an American film director, producer, and screenwriter. He lives in Los Angeles, California. #2: Scott Derrickson is an American director, screenwriter, and producer who has a net worth of $8 million. Scott Derrickson was born in Denver,\u00a0... #3: Scott Derrickson (born July 16, 1966 in Denver, Colorado) is an American film director, producer, and screenwriter. He is best known for directing "
+    },
+    {
+      "role": "assistant",
+      "content": "Thought: The observations confirm that Scott Derrickson is an American national. Now, I should look for Ed Wood's nationality to compare.\n\nAction: search[Ed Wood nationality]"
+    },
+    {
+      "role": "user",
+      "content": "Observation:  #1: Edward Davis \"Ed\" Wood, Jr. (October 10, 1924 \u2013 December 10, 1978) was an American director, producer, screenwriter, actor, author, and editor who is known\u00a0... #2: Julian Edward Wood (May 3, 1844 \u2013 June 2, 1911) was an American medical doctor, soldier, and a founder of Pi Kappa Alpha fraternity. #3: Edward Davis Wood Jr. (October 10, 1924 \u2013 December 10, 1978) was an American filmmaker, actor, and pulp novel author."
+    },
+    {
+      "role": "assistant",
+      "content": "Thought: The observations confirm that Ed Wood was also an American national. \n\nAction: finish[Yes]"
+    },
+    {
+      "role": "user",
+      "content": "Now, I will start a new question: Are Local H and For Against both from the United States?"
+    },
+    {
+        "role": "assistant",
+        "content": "Thought: To answer if Local H and For Against are both from the United States, I'll search information on each band's origin separately to determine where they're from.\n\nAction: search[Local H band origin]"
+    },
+    {
+      "role": "user",
+      "content": "Observation:  #1: May 27, 2014 ... Damian joins Local H frontman, Scott Lucas in Denver to discuss his early musical origins, how the band keeps rolling on as well as the side\u00a0... #2: Feb 19, 2015 ... On the other hand, given values for \u03b5 and \u03b8 minimizing energy with respect to local strains u(r) and h(r) require only local atomic arrangements\u00a0... #3: May 18, 2018 ... Local H is a classic 90s one-hit wonder who has consistently been touring and making music since their first album in 1995. And hey, let's give\u00a0..."
+    },
+    {
+      "role": "assistant",
+      "content": "Thought: The information provided doesn't explicitly state the origin of Local H. However, the mention of the 1990s and the first album in 1995 gives a hint that the band has been active in the US music scene since the mid-90s. To clarify and find a definitive answer, I will perform another search with a more specific query about the origin of the band Local H.\n\nAction: search[Local H band origin country]"
+    },
+    {
+      "role": "user",
+      "content": "Feedback: The observation does not provide the information about the query. Try to use a different Thought and Query to the previous one."
+    },
+    {
+      "role": "assistant",
+      "content": "I will use a straightforward query specifically asking for the country of origin of the band Local H.\n\nAction: search[Where is the band Local H from?]"
+    },
+    {
+      "role": "user",
+      "content": "Observation:  #1: Dec 9, 2022 ... Local H, the iconic alt-rock duo known for their blistering live shows and pioneering the two- piece band set-up, is at the top of their game\u00a0... #2: 19K Followers, 181 Following, 987 Posts - See Instagram photos and videos from Local H ( ... Band on the Run. linktr.ee/LocalH. 987 posts; 19.2K followers; 181\u00a0... #3: Local H is an American rock band originally formed by guitarist and vocalist Scott Lucas, bassist Matt Garcia, drummer Joe Daniels, and lead guitarist John\u00a0..."
+    },
+    {
+      "role": "assistant",
+      "content": "Thought: The third snippet finally confirms that Local H is an American rock band. Now, to address the whole question, we need to investigate the origin of the second band, For Against.\n\nAction: search[For Against band origin country]"
+    },
+    {
+      "role": "assistant",
+      "content": "Thought: The observations are about the genre of country music, not about the band For Against. There seems to be some confusion with the term \"country.\" To find information specifically about the band For Against, I'll try a more focused search that avoids ambiguous terms.\n\nAction: search[For Against band origin]"
+    },
+    {
+      "role": "user",
+      "content": "Observation:  #1: Key to the band's identity, Rage Against the Machine has voiced viewpoints ... History of Rock Bands. ABDO. p. 25. ISBN 978-1-60453-692-8 . rage against\u00a0... #2: Rise Against is an American punk rock band from Chicago, formed in 1999. The group's current line-up comprises vocalist/rhythm guitarist Tim McIlrath,\u00a0... #3: Against Me! is an American punk rock band, formed in 1997 in Naples, Florida by singer and guitarist Laura Jane Grace. That same year, Grace moved to\u00a0..."
+    },
+    {
+      "role": "assistant",
+      "content": "Thought: The observations confirm that Against is an American punk rock band. \n\nAction: finish[Yes]"
+    }
+  ],
+  "one-shot-feedback": [
+    {
+      "role": "user",
+      "content": "Solve a question answering task with interleaving Thought, Action, Observation or Feedback steps. Thought can reason about the current situation, and Action can be two types: \n(1) search[query], which searches a query on google and returns a short snippet containing the answer. Note that sometimes the snippet does not contain the answer, and some alternative search might be needed.\n(2) finish[answer], which returns the answer and finishes the task.\nQuestion: Are Local H and For Against both from the United States?"
+    },
+    {
+        "role": "assistant",
+        "content": "Thought: To answer if Local H and For Against are both from the United States, I'll search information on each band's origin separately to determine where they're from.\n\nAction: search[Local H band origin]"
+    },
+    {
+      "role": "user",
+      "content": "Observation:  #1: May 27, 2014 ... Damian joins Local H frontman, Scott Lucas in Denver to discuss his early musical origins, how the band keeps rolling on as well as the side\u00a0... #2: Feb 19, 2015 ... On the other hand, given values for \u03b5 and \u03b8 minimizing energy with respect to local strains u(r) and h(r) require only local atomic arrangements\u00a0... #3: May 18, 2018 ... Local H is a classic 90s one-hit wonder who has consistently been touring and making music since their first album in 1995. And hey, let's give\u00a0..."
+    },
+    {
+      "role": "assistant",
+      "content": "Thought: The information provided doesn't explicitly state the origin of Local H. However, the mention of the 1990s and the first album in 1995 gives a hint that the band has been active in the US music scene since the mid-90s. To clarify and find a definitive answer, I will perform another search with a more specific query about the origin of the band Local H.\n\nAction: search[Local H band origin country]"
+    },
+    {
+      "role": "user",
+      "content": "Feedback: The observations does not provide the information about the query. Try to use a different Thought and Query and ignore the previous one."
+    },
+    {
+      "role": "assistant",
+      "content": "Thought: The mention of the 1990s and the first album in 1995 gives a hint that the band has been active in the US music scene since the mid-90s. To clarify and find a definitive answer, I will use a straightforward query specifically asking for the country of origin of the band Local H.\n\nAction: search[Where is the band Local H from?]"
+    },
+    {
+      "role": "user",
+      "content": "Observation:  #1: Dec 9, 2022 ... Local H, the iconic alt-rock duo known for their blistering live shows and pioneering the two- piece band set-up, is at the top of their game\u00a0... #2: 19K Followers, 181 Following, 987 Posts - See Instagram photos and videos from Local H ( ... Band on the Run. linktr.ee/LocalH. 987 posts; 19.2K followers; 181\u00a0... #3: Local H is an American rock band originally formed by guitarist and vocalist Scott Lucas, bassist Matt Garcia, drummer Joe Daniels, and lead guitarist John\u00a0..."
+    },
+    {
+      "role": "assistant",
+      "content": "Thought: The third snippet finally confirms that Local H is an American rock band. Now, to address the whole question, we need to investigate the origin of the second band, For Against.\n\nAction: search[For Against band origin country]"
+    },
+    {
+      "role": "user",
+      "content": "Observation:  #1: Nov 17, 2023 ... Country music, style of American popular music that originated in rural parts of the South and West in the early 20th century. #2: Oct 22, 2019 ... The origins of country music can be found in recordings Southern Appalachian fiddle players made in the late 1910s. It wasn't until the early '\u00a0... #3: Birthplace of Country Music, parent nonprofit of Birthplace of Country Music Museum, Bristol Rhythm & Roots Reunion, and WBCM Radio Bristol."
+    },
+    {
+      "role": "assistant",
+      "content": "Thought: The observations are about the genre of country music, not about the band For Against. There seems to be some confusion with the term \"country.\" To find information specifically about the band For Against, I'll try a more focused search that avoids ambiguous terms.\n\nAction: search[For Against band origin]"
+    },
+    {
+      "role": "user",
+      "content": "Observation:  #1: Key to the band's identity, Rage Against the Machine has voiced viewpoints ... History of Rock Bands. ABDO. p. 25. ISBN 978-1-60453-692-8 . rage against\u00a0... #2: Rise Against is an American punk rock band from Chicago, formed in 1999. The group's current line-up comprises vocalist/rhythm guitarist Tim McIlrath,\u00a0... #3: Against Me! is an American punk rock band, formed in 1997 in Naples, Florida by singer and guitarist Laura Jane Grace. That same year, Grace moved to\u00a0..."
+    },
+    {
+      "role": "assistant",
+      "content": "Thought: The observations confirm that Against is an American punk rock band.\n\nAction: finish[Yes]"
+    }
+  ]
+}

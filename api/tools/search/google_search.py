@@ -1,4 +1,6 @@
 import json
+import os
+
 import requests
 from api.tools.search.utils import scrape_text, filter_text, split_into_paragraphs, retrieve, rerank
 import fcntl
@@ -11,11 +13,10 @@ HIT = 0
 CALL_SERPER = 0
 
 with open("data/keys.json", "r") as f:
-    pass
-    # keys = json.load(f)
-    # GOOGLE_API_KEY = keys["google_api_key"]
-    # CUSTOM_SEARCH_ENGINE_ID = keys["custom_search_engine_id"]
-    # SERPER_API_KEY = keys["serper_api_key"]
+    keys = json.load(f)
+    GOOGLE_API_KEY = keys["google_api_key"]
+    CUSTOM_SEARCH_ENGINE_ID = keys["custom_search_engine_id"]
+    SERPER_API_KEY = keys["serper_api_key"]
 
 
 @timeout_decorator.timeout(5, timeout_exception=TimeoutError)
@@ -31,7 +32,7 @@ def req(query, n=10):
     }
 
     result = requests.request("POST", url, headers=headers, data=payload).json()
-#     return result
+    return result
 
 
 def GOOGLESearchTitlesSnippets(query):
@@ -41,6 +42,9 @@ def GOOGLESearchTitlesSnippets(query):
     CALL_SERPER += 1
     if SEARCH_DATABASE is None:
         SEARCH_DATABASE = {}
+        # check if file exists
+        if not os.path.exists("data/search_database_old.jsonl"):
+            open("data/search_database_old.jsonl", "w").close()
         # lock file
         with open("data/search_database_old.jsonl", "r") as f:
             fcntl.flock(f, fcntl.LOCK_EX)
@@ -100,6 +104,9 @@ def google_search_serper_with_answer(query, n=10):
     CALL_SERPER += 1
     if SEARCH_DATABASE is None:
         SEARCH_DATABASE = {}
+        # check if file exists
+        if not os.path.exists("data/search_database_serper_new.jsonl"):
+            open("data/search_database_serper_new.jsonl", "w").close()
         # lock file
         with open("data/search_database_serper_new.jsonl", "r") as f:
             fcntl.flock(f, fcntl.LOCK_EX)

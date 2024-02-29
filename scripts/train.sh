@@ -1,3 +1,4 @@
+# For math tasks
 model="meta-llama/Llama-2-7b-chat-hf"
 task_name="gsm8k"
 template="zero-shot-target-aware"
@@ -7,7 +8,32 @@ pos_num="5000"
 neg_num="10000"
 prompt_path="prompts/gsm8k/gsm8k_conversation.json"
 question_path="data/dataset/gsm8k/train.json"
-output_dir="data/checkpoints/NAT-7b-math"
+output_dir="data/checkpoints/NAT-math-7b"
+
+# For HotpotQA
+# model="meta-llama/Llama-2-7b-chat-hf"
+# task_name="hotpotqa"
+# template="zero-shot-target-aware-four-class"
+# pos_path="data/dataset/hotpotqa/hotpotqa_gpt-3.5_positive.json"
+# neg_path="data/dataset/hotpotqa/hotpotqa_gpt-3.5_negative.json"
+# pos_num="500"
+# neg_num="1000"
+# prompt_path="prompts/hotpotqa/hotpotqa_conversation.json"
+# question_path="data/dataset/hotpotqa/train_random_8000.json"
+# output_dir="data/checkpoints/NAT-qa-7b"
+
+# For StrategyQA
+# model="meta-llama/Llama-2-7b-chat-hf"
+# task_name="strategyqa"
+# template="zero-shot-target-aware"
+# pos_path="data/dataset/strategyqa/strategyqa_gpt-3.5_positive.json"
+# neg_path="data/dataset/strategyqa/strategyqa_gpt-3.5_negative.json"
+# pos_num="500"
+# neg_num="1000"
+# prompt_path="prompts/strategyqa/strategyqa_conversation.json"
+# question_path="data/dataset/strategyqa/train.jsonl"
+# output_dir="data/checkpoints/NAT-qa-7b"
+
 
 epochs="2"
 lr="5e-5"

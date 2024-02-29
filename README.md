@@ -31,7 +31,7 @@ Our NAT models are trained with negative-aware training method based on Llama-2-
 
 | 🤗Model                                                       | 📂Dataset(#Num)                                               |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [NAT-math-7b](https://huggingface.co/reasonwang/NAT-math-7b) | [gsm8k positive](https://drive.google.com/file/d/1WENIKuRwJmrBQCEg2zCnmi4bhIXY4NP5/view?usp=sharing)(5100) |
+| [NAT-math-7b](https://huggingface.co/reasonwang/NAT-math-7b) | [gsm8k positive](https://drive.google.com/file/d/1WENIKuRwJmrBQCEg2zCnmi4bhIXY4NP5/view?usp=sharing)(5,100) |
 | [NAT-math-13b](https://huggingface.co/reasonwang/NAT-math-13b) | [gsm8k negative](https://drive.google.com/file/d/15hJsOt5zKoO__X5qX0p5bueD2dPx90ib/view?usp=sharing)(12,150) |
 | [NAT-qa-7b](https://huggingface.co/reasonwang/NAT-qa-7b)     | [hotpotqa positive](https://drive.google.com/file/d/1TNs216WCdF7YwEqJSr0-QEaJE5TnKIpy/view?usp=sharing)(2,147) |
 | [NAT-qa-13b](https://huggingface.co/reasonwang/NAT-qa-13b)   | [hotpotqa negative](https://drive.google.com/file/d/10p2MNkQASk8roQrDq13PPkB4ZYayMX-L/view?usp=sharing)(2,425) |
@@ -84,7 +84,7 @@ python -m data.generate --model reasonwang/NAT-math-7b --template zero-shot-targ
 
 ## Citation
 
-If you find our work or code helpful, please consider cite:
+If you find our work or code helpful, please consider citing:
 
 ```
 @misc{wang2024learning,

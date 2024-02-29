@@ -1,0 +1,87 @@
+{
+  "one-shot": {
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Solve a question answering task with interleaving Thought, Action, Observation steps. Thought can reason about the current situation, and Action can be two types: \n(1) search[query], which searches a query on google and returns a short snippet containing the answer. Note that sometimes the snippet does not contain the answer, and some alternative search might be needed.\n(2) finish[answer], which returns the answer and finishes the task. Remember you should answer Yes or No.\nQuestion: Would Jackie Chan have trouble communicating with a deaf person?"
+      },
+      {
+        "role": "assistant",
+        "content": "Thought: communication with a deaf person can be achieved through various means, such as sign language, writing, or lip-reading. Jackie Chan is known for his international presence and has likely encountered fans and individuals from diverse backgrounds, including those who are deaf or hard of hearing. It is possible that he has some knowledge of sign language or other communication methods, but without specific information about his skills or experiences, we cannot make a definitive statement.\n\nAction: search[Does Jackie Chan know sign language?]"
+      },
+      {
+        "role": "user",
+        "content": "Observation: #1: Did you know? JACKIE CHAN 1.Jackie Chan's real name is Chan Kong-Sang 2.He speaks 7 languages: Cantonese, Mandarin, English, German, Korean, Japanese... #2: Jackie Chan, the actor, sang in Chinese Sign Language this year on China's largest broadcasting network, CCTV's Gala special celebrating the Chinese New ... #3: Jackie Chan's International Sign Language Went Viral! ... Not only International Superstar Jackie Chan is talented in martial arts, acting, film ..."
+      },
+      {
+        "role": "assistant",
+        "content": "Thought: The observation indicates that Jackie Chan has used Chinese Sign Language during a broadcast on China's largest network, CCTV and his use of sign language went viral also implies that his signing was either impressive or unexpected.\n\nAction: finish[Yes]"
+      }
+    ],
+    "question_prompt": "Now, I will start a new question: {question}"
+  },
+  "two-shot": {
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Solve a question answering task with interleaving Thought, Action, Observation steps. Thought can reason about the current situation, and Action can be two types: \n(1) search[query], which searches a query on google and returns a short snippet containing the answer. Note that sometimes the snippet does not contain the answer, and some alternative search might be needed.\n(2) finish[answer], which returns the answer and finishes the task. Remember you should answer Yes or No.\nQuestion: Would Jackie Chan have trouble communicating with a deaf person?"
+      },
+      {
+        "role": "assistant",
+        "content": "Thought: communication with a deaf person can be achieved through various means, such as sign language, writing, or lip-reading. Jackie Chan is known for his international presence and has likely encountered fans and individuals from diverse backgrounds, including those who are deaf or hard of hearing. It is possible that he has some knowledge of sign language or other communication methods, but without specific information about his skills or experiences, we cannot make a definitive statement.\n\nAction: search[Does Jackie Chan know sign language?]"
+      },
+      {
+        "role": "user",
+        "content": "Observation: #1: Did you know? JACKIE CHAN 1.Jackie Chan's real name is Chan Kong-Sang 2.He speaks 7 languages: Cantonese, Mandarin, English, German, Korean, Japanese... #2: Jackie Chan, the actor, sang in Chinese Sign Language this year on China's largest broadcasting network, CCTV's Gala special celebrating the Chinese New ... #3: Jackie Chan's International Sign Language Went Viral! ... Not only International Superstar Jackie Chan is talented in martial arts, acting, film ..."
+      },
+      {
+        "role": "assistant",
+        "content": "Thought: The observation indicates that Jackie Chan has used Chinese Sign Language during a broadcast on China's largest network, CCTV and his use of sign language went viral also implies that his signing was either impressive or unexpected.\n\nAction: finish[Yes]"
+      },
+      {
+        "role": "user",
+        "content": "Now, I will start a new question: Would Tom Cruise ever insult L. Ron Hubbard?"
+      },
+      {
+        "role": "assistant",
+        "content": "Thought: Tom Cruise is a well-known member of the Church of Scientology, which was founded by L. Ron Hubbard. Given his high-profile association with the church and his past public statements, it seems unlikely that he would insult L. Ron Hubbard. However, without current or past statements directly from Tom Cruise on this matter, we cannot provide a definitive answer.\n\nAction: search[Has Tom Cruise ever insulted L. Ron Hubbard?]"
+      },
+      {
+        "role": "user",
+        "content": "Observation: #1: Ron Hubbard. This leads Scientologists, including Cruise, to flock to Stan's house to pay their respects. But when Stan insults his acting ability, Cruise hides ... #2: His strange acceptance speech, in which he addressed a painting of the church's founder, sci-fi novelist L Ron Hubbard, was leaked online years ... #3: The head of Scientology lured Tom Cruise into the church with a charm offensive designed to make him feel like the two men were brothers, a new ..."
+      },
+      {
+        "role": "assistant",
+        "content": "Thought: The observations provided do not contain any information about Tom Cruise insulting L. Ron Hubbard. Instead, they mention instances of Cruise showing respect or being involved with the Church of Scientology. Given Cruise's long-standing and high-profile involvement with Scientology, it is highly unlikely that he would publicly insult its founder.\n\nAction: finish[No]"
+      }
+    ],
+    "question_prompt": "Now, I will start a new question: {question}"
+  },
+  "zero-shot": {
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Solve a question answering task with interleaving Thought, Action, Observation steps. Thought can reason about the current situation, and Action can be two types: \n(1) search[query], which searches a query on google and returns a short snippet containing the answer. Note that sometimes the snippet does not contain the answer, and some alternative search might be needed.\n(2) finish[answer], which returns the answer and finishes the task. Remember you should answer Yes or No."
+      },
+      {
+        "role": "assistant",
+        "content": "I've understood your instruction, start please."
+      }
+    ],
+    "question_prompt": "Question: {question}"
+  },
+  "zero-shot-target-aware": {
+    "conversations": [
+      {
+        "role": "user",
+        "content": "Solve a question answering task with interleaving Thought, Action, Observation steps. Thought can reason about the current situation, and Action can be two types: \n(1) search[query], which searches a query on google and returns a short snippet containing the answer. Note that sometimes the snippet does not contain the answer, and some alternative search might be needed.\n(2) finish[answer], which returns the answer and finishes the task. You need to generate a sequence of Thought and Action steps to solve the question. Note that the steps could be correct or incorrect. You need to follow the instruction strictly. Remember you should answer Yes or No."
+      },
+      {
+        "role": "assistant",
+        "content": "I've understood your instruction, start please."
+      }
+    ],
+    "correct_question_prompt": "Question: {question}. Generate a sequence of Thought and Action steps to solve the question **correctly**.",
+    "incorrect_question_prompt": "Question: {question}. Generate a sequence of Thought and Action steps. But **incorrectly** solve the question."
+  }
+}

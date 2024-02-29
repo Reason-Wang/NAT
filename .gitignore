@@ -1,5 +1,4 @@
-*.json
-*.jsonl
+data/keys.json
 .idea
 *__pycache__*
 *.pyc

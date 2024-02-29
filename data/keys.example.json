@@ -1,0 +1,10 @@
+{
+  "README": "Rename this file to keys.json",
+  "huggingface_api_key": "Your Huggingface API key",
+  "openai_api_keys": [
+    "Your OpenAI API key"
+  ],
+  "serper_api_key": "Your SerpAPI key",
+  "google_api_key": "Your Google API key",
+  "custom_search_engine_id": "Your Google Custom Search Engine ID"
+}
