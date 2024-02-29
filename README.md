@@ -9,7 +9,7 @@
 </p>
 
 
-![Illustration](./src/Illustration.png)
+![Illustration](./assets/Illustration.png)
 
 **NAT (Negative-Aware Training)** aims to push the limit of data efficiency by incorporating negative trajectories when fine-tuning Large Language Models as Agents. We find models' performance increases as we include more negative samples. Besides, our method (NAT) shows superior performance compared to directly including negative samples.
 
@@ -17,7 +17,7 @@
 
 ## Main Results
 
-<img src="./src/math_num.png" width="330"><img src="./src/qa_num.png" width="387">
+<img src="./assets/math_num.png" width="330"><img src="./assets/qa_num.png" width="387">
 
 **Figure 1** and **Figure 2** show the result on math and question-answering tasks. For math, our method continues to enhance the performance when incorporating more negative samples. For both math and QA, our method achieves better results.
 
@@ -31,12 +31,12 @@ Our NAT models are trained with negative-aware training method based on Llama-2-
 
 | 🤗Model                                                       | 📂Dataset(#Num)                                               |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [NAT-math-7b](https://huggingface.co/reasonwang/NAT-math-7b) | [gsm8k positive](https://drive.google.com/file/d/1WENIKuRwJmrBQCEg2zCnmi4bhIXY4NP5/view?usp=sharing)(5,100) |
-| [NAT-math-13b](https://huggingface.co/reasonwang/NAT-math-13b) | [gsm8k negative](https://drive.google.com/file/d/15hJsOt5zKoO__X5qX0p5bueD2dPx90ib/view?usp=sharing)(12,150) |
-| [NAT-qa-7b](https://huggingface.co/reasonwang/NAT-qa-7b)     | [hotpotqa positive](https://drive.google.com/file/d/1TNs216WCdF7YwEqJSr0-QEaJE5TnKIpy/view?usp=sharing)(2,147) |
-| [NAT-qa-13b](https://huggingface.co/reasonwang/NAT-qa-13b)   | [hotpotqa negative](https://drive.google.com/file/d/10p2MNkQASk8roQrDq13PPkB4ZYayMX-L/view?usp=sharing)(2,425) |
-| [NAT-strategy-qa-7b](https://huggingface.co/reasonwang/NAT-strategy-qa-7b) | [strategyqa positive](https://drive.google.com/file/d/1OAZs1ok-GjKgno-1a-79ssMfjKrpgDrs/view?usp=sharing)(1,070) |
-| [NAT-strategy-qa-13b](https://huggingface.co/reasonwang/NAT-strategy-qa-13b) | [strategyqa negative](https://drive.google.com/file/d/1lRr1Rzxu4MC1DEBp3XgcrnZfGTTWBWjQ/view?usp=sharing)(1,263) |
+| [NAT-math-7b](https://huggingface.co/reasonwang/NAT-math-7b) | [gsm8k positive](https://github.com/Reason-Wang/NAT/blob/master/data/dataset/gsm8k/gsm8k_gpt-3.5_positive.json)(5,100) |
+| [NAT-math-13b](https://huggingface.co/reasonwang/NAT-math-13b) | [gsm8k negative](https://github.com/Reason-Wang/NAT/blob/master/data/dataset/gsm8k/gsm8k_gpt-3.5_negative.json)(12,150) |
+| [NAT-qa-7b](https://huggingface.co/reasonwang/NAT-qa-7b)     | [hotpotqa positive](https://github.com/Reason-Wang/NAT/blob/master/data/dataset/hotpotqa/hotpotqa_gpt-3.5_positive.json)(2,147) |
+| [NAT-qa-13b](https://huggingface.co/reasonwang/NAT-qa-13b)   | [hotpotqa negative](https://github.com/Reason-Wang/NAT/blob/master/data/dataset/hotpotqa/hotpotqa_gpt-3.5_negative.json)(2,425) |
+| [NAT-strategy-qa-7b](https://huggingface.co/reasonwang/NAT-strategy-qa-7b) | [strategyqa positive](https://github.com/Reason-Wang/NAT/blob/master/data/dataset/strategyqa/strategyqa_gpt-3.5_positive.json)(1,070) |
+| [NAT-strategy-qa-13b](https://huggingface.co/reasonwang/NAT-strategy-qa-13b) | [strategyqa negative](https://github.com/Reason-Wang/NAT/blob/master/data/dataset/strategyqa/strategyqa_gpt-3.5_negative.json)(1,263) |
 
 **Table 1**: Models and datasets.
 
