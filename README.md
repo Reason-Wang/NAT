@@ -13,8 +13,6 @@
 
 **NAT (Negative-Aware Training)** aims to push the limit of data efficiency by incorporating negative trajectories when fine-tuning Large Language Models as Agents. We find models' performance increases as we include more negative samples. Besides, our method (NAT) shows superior performance compared to directly including negative samples.
 
-
-
 ## Main Results
 
 <img src="./assets/math_num.png" width="330"><img src="./assets/qa_num.png" width="387">

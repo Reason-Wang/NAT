@@ -1,8 +1,7 @@
 """
-Conversation prompt templates.
+This module is adapted from https://github.com/lm-sys/FastChat
 
-We kindly request that you import fastchat instead of copying this file if you wish to use it.
-If you have any changes in mind, please contribute back so the community can benefit collectively and continue to maintain these valuable templates.
+Conversation prompt templates.
 """
 
 import dataclasses

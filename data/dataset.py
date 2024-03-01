@@ -114,73 +114,6 @@ class ConversationDataset(Dataset):
         )
 
 
-def preprocess_negative(negative_data, tokenizer, conv_template_name, max_length=4096):
-    human_role_set = {"human", "user"}
-    ai_role_set = {"ai", "gpt", "assistant"}
-    all_input_ids = []
-    all_targets = []
-    all_attention_masks = []
-
-    # Get the role label and content label
-    if 'from' in negative_data[0]['conversations'][0]:
-        role_label, content_label = "from", "value"
-    elif 'role' in negative_data[0]['conversations'][0]:
-        role_label, content_label = "role", "content"
-    else:
-        raise ValueError("Cannot find role label and content label in the data.")
-
-    for i, data in enumerate(negative_data):
-        # print(len(data))
-        conversation = data['conversations']
-        # conv.set_system_message(conversation[0]['value'])
-        # for j in range(1, len(conversation)):
-        conv = get_conv_template(conv_template_name)
-        for j in range(len(conversation)):
-            # Do not calculate loss in the negative trajectory
-            if j == len(conversation) - 1:
-                content = conversation[j][content_label] + '\n' + "Is this the correct answer for the question?"
-            else:
-                content = conversation[j][content_label]
-
-            conv.append_message(conv.roles[0] if conversation[j][role_label] in human_role_set
-                                else conv.roles[1], content, False)
-        conv.append_message(conv.roles[1], "No", True)
-
-        separate_prompts = conv.get_separate_prompt_with_to_loss()
-        # all_prompt = ""
-        input_ids = []
-        targets = []
-        for i, (prompt, to_loss) in enumerate(separate_prompts):
-            # print(prompt)
-            # all_prompt += prompt
-            if i == 0:
-                prompt = tokenizer.bos_token + prompt
-
-            tmp_input_ids = tokenizer(prompt, add_special_tokens=False)["input_ids"]
-            if to_loss:
-                tmp_target = tmp_input_ids.copy()
-            else:
-                tmp_target = [-100] * len(tmp_input_ids)
-            input_ids.extend(tmp_input_ids)
-            targets.extend(tmp_target)
-
-        input_ids = input_ids[:max_length]
-        targets = targets[:max_length]
-        if input_ids[-1] != tokenizer.eos_token_id and len(input_ids) < max_length:
-            input_ids.append(tokenizer.eos_token_id)
-            targets.append(tokenizer.eos_token_id)
-
-        all_input_ids.append(input_ids)
-        all_targets.append(targets)
-        all_attention_masks.append([1] * len(input_ids))
-
-    return dict(
-        input_ids=all_input_ids,
-        labels=all_targets,
-        attention_mask=all_attention_masks
-    )
-
-
 class LazyConversationDataset(Dataset):
     def __init__(self, tokenizer, sources, targets, max_length):
         # Not implemented yet
@@ -192,38 +125,11 @@ class LazyConversationDataset(Dataset):
         self.max_length = max_length
         self.has_print = False
 
-    def _tokenize(self, text):
-        return self.tokenizer(text, truncation=True, max_length=self.max_length)
-
     def __len__(self):
         return len(self.sources)
 
     def __getitem__(self, item):
-        full_prompt = self.sources[item] + ' ' + self.targets[item]
-        user_prompt = self.sources[item]
-
-        # set a prompt for inputs
-        # full_prompt = self.instruction_prompt.format(instruction=self.sources[item]) + self.response_prompt.format(response=self.targets[item])
-        # user_prompt = self.response_prompt.format(response=self.targets[item])
-
-        if not self.has_print:
-            print(full_prompt, user_prompt)
-            self.has_print = True
-
-        tokenized_full_prompt = self._tokenize(full_prompt)
-        if (tokenized_full_prompt["input_ids"][-1] != self.tokenizer.eos_token_id
-                and len(tokenized_full_prompt["input_ids"]) < self.max_length):
-            tokenized_full_prompt["input_ids"].append(self.tokenizer.eos_token_id)
-            tokenized_full_prompt["attention_mask"].append(1)
-
-        tokenized_user_prompt = self._tokenize(user_prompt)["input_ids"]
-        user_prompt_len = len(tokenized_user_prompt)
-        labels = [-100 if i < user_prompt_len else token_id for i, token_id in
-                  enumerate(tokenized_full_prompt["input_ids"])]
-
-        return torch.tensor(tokenized_full_prompt["input_ids"]), \
-            torch.tensor(tokenized_full_prompt["attention_mask"]), \
-            torch.tensor(labels)
+        pass
 
 
 class CollatorWithPadding(object):
