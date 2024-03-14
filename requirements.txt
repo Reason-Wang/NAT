@@ -1,3 +1,8 @@
+deepspeed
+deprecated
+accelerate
+protobuf
+flash-attn
 beautifulsoup4==4.12.3
 click==8.1.7
 fschat==0.2.35

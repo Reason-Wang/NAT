@@ -6,9 +6,9 @@ import sys
 sys.path.append('./')
 from data.dataset import ConversationDataset, CollatorWithPadding
 from data.utils import load_data, load_data_with_prompts, load_pos_neg_data_with_prompts
-with open('data/keys.json', 'r') as f:
-    keys = json.load(f)['huggingface_api_key']
-huggingface_hub.login("")
+# with open('data/keys.json', 'r') as f:
+#     keys = json.load(f)['huggingface_api_key']
+# huggingface_hub.login("")
 import torch
 import transformers
 from transformers import Trainer
