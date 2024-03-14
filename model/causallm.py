@@ -2,7 +2,7 @@ from fastchat.conversation import get_conv_template
 from transformers import AutoModelForCausalLM, AutoTokenizer, StoppingCriteria, StoppingCriteriaList
 import huggingface_hub
 import torch
-huggingface_hub.login("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")
+# huggingface_hub.login("")
 
 
 class KeywordsStoppingCriteria(StoppingCriteria):
